@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UniversityTransportation.Data.Models;
+using UniversityTransportation.Data.Models.Accounts;
 using UniversityTransportation.Data.Models.Journey;
 
 namespace UniversityTransportation.Data
@@ -21,7 +22,23 @@ namespace UniversityTransportation.Data
             optionsBuilder.UseSqlServer(Constants.ConfigurationConstants.ConnectionString);
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Passenger>()
+                .HasOne(b => b.ApplicationUser)
+                .WithOne(i => i.Passenger)
+                .HasForeignKey<ApplicationUser>(b => b.PassengerId);
+
+            modelBuilder.Entity<Driver>()
+                .HasOne(b => b.ApplicationUser)
+                .WithOne(i => i.Driver)
+                .HasForeignKey<ApplicationUser>(b => b.DriverId);
+        }
+
         public DbSet<Station> Stations { get; set; }
-        //public DbSet<ApplicationUser> Users { get; set; }
+        public DbSet<Passenger> Passengers { get; set; }
+        public DbSet<Driver> Drivers { get; set; }
     }
 }

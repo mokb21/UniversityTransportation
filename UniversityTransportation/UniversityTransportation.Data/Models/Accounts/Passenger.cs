@@ -5,16 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniversityTransportation.Data.Models.Journey
+namespace UniversityTransportation.Data.Models.Accounts
 {
-    public class Station
+    public class Passenger
     {
         [Key]
         public Guid Id { get; set; }
+
         [Required]
         [MaxLength(200)]
-        public string Name { get; set; }
-        public double Longitude { get; set; }
-        public double Latitude { get; set; }
+        public string UniversityId { get; set; }
+
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }
