@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <None Remove="ApplicationContext.cs~RF2f7f0e14.TMP" />
+    <None Remove="Models\Journey\Journey.cs~RF34b7d152.TMP" />
   </ItemGroup>
 
   <ItemGroup>

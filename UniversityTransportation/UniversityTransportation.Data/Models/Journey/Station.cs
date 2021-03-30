@@ -22,5 +22,7 @@ namespace UniversityTransportation.Data.Models.Journey
 
         public double Longitude { get; set; }
         public double Latitude { get; set; }
+
+        public virtual ICollection<JourneyStation> JourneyStations { get; set; }
     }
 }

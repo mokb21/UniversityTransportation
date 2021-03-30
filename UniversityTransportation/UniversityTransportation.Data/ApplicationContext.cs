@@ -39,13 +39,17 @@ namespace UniversityTransportation.Data
             modelBuilder.Entity<Journey>()
                 .HasOne(a => a.Driver)
                 .WithMany(b => b.Journeys)
-                .HasForeignKey(a => a.DriverId); ;
+                .HasForeignKey(a => a.DriverId);
+
+            modelBuilder.Entity<JourneyStation>()
+                .HasKey(a => new { a.JourneyId, a.StationId });
         }
 
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<Station> Stations { get; set; }
         public DbSet<Journey> Journeys { get; set; }
+        public DbSet<JourneyStation> JourneyStations { get; set; }
 
     }
 }
