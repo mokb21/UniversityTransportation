@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace UniversityTransportation.Data.Models.Accounts
 {
     public class Driver
@@ -24,5 +25,7 @@ namespace UniversityTransportation.Data.Models.Accounts
         public int NumberOfChairs { get; set; }
 
         public virtual ApplicationUser ApplicationUser { get; set; }
+
+        public virtual ICollection<Journey.Journey> Journeys { get; set; }
     }
 }

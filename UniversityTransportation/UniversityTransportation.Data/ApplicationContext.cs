@@ -27,18 +27,25 @@ namespace UniversityTransportation.Data
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Entity<Passenger>()
-                .HasOne(b => b.ApplicationUser)
-                .WithOne(i => i.Passenger)
-                .HasForeignKey<ApplicationUser>(b => b.PassengerId);
+                .HasOne(a => a.ApplicationUser)
+                .WithOne(b => b.Passenger)
+                .HasForeignKey<ApplicationUser>(a => a.PassengerId);
 
             modelBuilder.Entity<Driver>()
-                .HasOne(b => b.ApplicationUser)
-                .WithOne(i => i.Driver)
-                .HasForeignKey<ApplicationUser>(b => b.DriverId);
+                .HasOne(a => a.ApplicationUser)
+                .WithOne(b => b.Driver)
+                .HasForeignKey<ApplicationUser>(a => a.DriverId);
+
+            modelBuilder.Entity<Journey>()
+                .HasOne(a => a.Driver)
+                .WithMany(b => b.Journeys)
+                .HasForeignKey(a => a.DriverId); ;
         }
 
-        public DbSet<Station> Stations { get; set; }
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Driver> Drivers { get; set; }
+        public DbSet<Station> Stations { get; set; }
+        public DbSet<Journey> Journeys { get; set; }
+
     }
 }
