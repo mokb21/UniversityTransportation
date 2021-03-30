@@ -24,5 +24,7 @@ namespace UniversityTransportation.Data.Models.Journey
         public double Latitude { get; set; }
 
         public virtual ICollection<JourneyStation> JourneyStations { get; set; }
+
+        public virtual ICollection<PassengerJourneyStation> PassengerJourneyStations { get; set; }
     }
 }

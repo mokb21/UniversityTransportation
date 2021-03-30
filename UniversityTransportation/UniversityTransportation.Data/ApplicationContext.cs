@@ -43,6 +43,9 @@ namespace UniversityTransportation.Data
 
             modelBuilder.Entity<JourneyStation>()
                 .HasKey(a => new { a.JourneyId, a.StationId });
+
+            modelBuilder.Entity<PassengerJourneyStation>()
+               .HasKey(a => new { a.PassengerId, a.JourneyId, a.StationId });
         }
 
         public DbSet<Passenger> Passengers { get; set; }
@@ -50,6 +53,7 @@ namespace UniversityTransportation.Data
         public DbSet<Station> Stations { get; set; }
         public DbSet<Journey> Journeys { get; set; }
         public DbSet<JourneyStation> JourneyStations { get; set; }
+        public DbSet<PassengerJourneyStation> PassengerJourneyStations { get; set; }
 
     }
 }

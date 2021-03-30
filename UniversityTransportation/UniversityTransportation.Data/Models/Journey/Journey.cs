@@ -37,5 +37,7 @@ namespace UniversityTransportation.Data.Models.Journey
         public virtual Driver Driver { get; set; }
 
         public virtual ICollection<JourneyStation> JourneyStations { get; set; }
+
+        public virtual ICollection<PassengerJourneyStation> PassengerJourneyStations { get; set; }
     }
 }
