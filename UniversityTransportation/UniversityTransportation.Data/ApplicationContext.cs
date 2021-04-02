@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using UniversityTransportation.Data.Models;
 using UniversityTransportation.Data.Models.Accounts;
 using UniversityTransportation.Data.Models.Journey;
+using UniversityTransportation.Data.Models.Trip;
 
 namespace UniversityTransportation.Data
 {
@@ -46,6 +47,30 @@ namespace UniversityTransportation.Data
 
             modelBuilder.Entity<PassengerJourneyStation>()
                .HasKey(a => new { a.PassengerId, a.JourneyId, a.StationId });
+
+            modelBuilder.Entity<Trip>()
+                .HasOne(a => a.Journey)
+                .WithMany(b => b.Trips)
+                .HasForeignKey(a => a.JourneyId);
+
+            modelBuilder.Entity<TripPassenger>()
+                .HasKey(a => new { a.TripId, a.PassengerId });
+
+            modelBuilder.Entity<RequestTrip>()
+                .HasOne(a => a.Passenger)
+                .WithMany(b => b.RequestTrips)
+                .HasForeignKey(a => a.PassengerId);
+
+            modelBuilder.Entity<RequestTrip>()
+                .HasOne(a => a.Journey)
+                .WithMany(b => b.RequestTrips)
+                .HasForeignKey(a => a.JourneyId);
+
+            modelBuilder.Entity<Room>()
+                .HasOne(a => a.Journey)
+                .WithMany(b => b.Rooms)
+                .HasForeignKey(a => a.JourneyId);
+
         }
 
         public DbSet<Passenger> Passengers { get; set; }
@@ -54,6 +79,10 @@ namespace UniversityTransportation.Data
         public DbSet<Journey> Journeys { get; set; }
         public DbSet<JourneyStation> JourneyStations { get; set; }
         public DbSet<PassengerJourneyStation> PassengerJourneyStations { get; set; }
+        public DbSet<Trip> Trips { get; set; }
+        public DbSet<RequestTrip> RequestTrips { get; set; }
+        public DbSet<TripPassenger> TripPassengers { get; set; }
+        public DbSet<Room> Rooms { get; set; }
 
     }
 }
