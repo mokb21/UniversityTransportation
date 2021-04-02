@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UniversityTransportation.Data.Models.Journey;
+using UniversityTransportation.Data.Models.Trip;
 
 namespace UniversityTransportation.Data.Models.Accounts
 {
@@ -20,5 +21,9 @@ namespace UniversityTransportation.Data.Models.Accounts
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public virtual ICollection<PassengerJourneyStation> PassengerJourneyStations { get; set; }
+
+        public virtual ICollection<TripPassenger> TripPassengers { get; set; }
+
+        public virtual ICollection<RequestTrip> RequestTrips { get; set; }
     }
 }
