@@ -4,4 +4,9 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\UniversityTransportation.Data\UniversityTransportation.Data.csproj" />
+    <ProjectReference Include="..\UniversityTransportation.DTO\UniversityTransportation.DTO.csproj" />
+  </ItemGroup>
+
 </Project>

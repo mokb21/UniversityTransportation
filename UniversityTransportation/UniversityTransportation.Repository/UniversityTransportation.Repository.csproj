@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\UniversityTransportation.Data\UniversityTransportation.Data.csproj" />
+    <ProjectReference Include="..\UniversityTransportation.Interfaces\UniversityTransportation.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

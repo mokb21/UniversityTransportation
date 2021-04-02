@@ -29,6 +29,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UniversityTransportation.Constants\UniversityTransportation.Constants.csproj" />
+    <ProjectReference Include="..\UniversityTransportation.Enums\UniversityTransportation.Enums.csproj" />
   </ItemGroup>
 
 </Project>
