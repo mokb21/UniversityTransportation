@@ -13,6 +13,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UniversityTransportation.Data;
+using UniversityTransportation.Interfaces.Repository;
+using UniversityTransportation.Interfaces.Services;
+using UniversityTransportation.Repository;
+using UniversityTransportation.Services;
 
 namespace UniversityTransportation.API
 {
@@ -33,6 +37,11 @@ namespace UniversityTransportation.API
             services.AddControllers();
 
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Constants.ConfigurationConstants.ConnectionString));
+
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IStationRepository, StationRepository>();
+
+            services.AddTransient<IStationService, StationService>();
 
             services.AddSwaggerGen(c =>
             {

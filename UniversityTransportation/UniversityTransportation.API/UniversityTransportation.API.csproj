@@ -20,6 +20,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UniversityTransportation.Repository\UniversityTransportation.Repository.csproj" />
+    <ProjectReference Include="..\UniversityTransportation.Services\UniversityTransportation.Services.csproj" />
   </ItemGroup>
 
 </Project>
