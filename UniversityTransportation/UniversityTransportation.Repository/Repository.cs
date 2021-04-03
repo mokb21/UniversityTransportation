@@ -17,7 +17,7 @@ namespace UniversityTransportation.Repository
             _context = context;
         }
 
-        public async Task<TEntity> AddAsync(TEntity entity)
+        public virtual async Task<TEntity> AddAsync(TEntity entity)
         {
             if (entity == null)
             {
@@ -37,7 +37,7 @@ namespace UniversityTransportation.Repository
             }
         }
 
-        public void Delete(Guid Id)
+        public virtual void Delete(Guid Id)
         {
             try
             {
@@ -57,7 +57,7 @@ namespace UniversityTransportation.Repository
             }
         }
 
-        public TEntity Get(Guid Id)
+        public virtual TEntity Get(Guid Id)
         {
             try
             {
@@ -69,7 +69,7 @@ namespace UniversityTransportation.Repository
             }
         }
 
-        public IQueryable<TEntity> GetAll()
+        public virtual IQueryable<TEntity> GetAll()
         {
             try
             {
@@ -81,7 +81,7 @@ namespace UniversityTransportation.Repository
             }
         }
 
-        public async Task<TEntity> UpdateAsync(TEntity entity)
+        public virtual async Task<TEntity> UpdateAsync(TEntity entity)
         {
             if (entity == null)
             {

@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UniversityTransportation.Data.Models;
 using UniversityTransportation.Enums;
+using UniversityTransportation.Interfaces.Services;
 using UniversityTransportation.Models;
 
 namespace UniversityTransportation.API.Controllers
@@ -24,15 +25,19 @@ namespace UniversityTransportation.API.Controllers
         private readonly ILogger _logger;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly IDriverService _driverService;
+
 
         public AccountsController(
             ILogger<AccountsController> logger,
             UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager)
+            SignInManager<ApplicationUser> signInManager,
+            IDriverService driverService)
         {
             _logger = logger;
             _userManager = userManager;
             _signInManager = signInManager;
+            _driverService = driverService;
         }
 
         [HttpPost]
@@ -88,6 +93,41 @@ namespace UniversityTransportation.API.Controllers
             }
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> RegisterDriver([FromBody] DTO.Accounts.Driver model)
+        {
+            try
+            {
+                if (model.UserName != null &&
+                    model.Email != null &&
+                    model.Password != null &&
+                    model.Password == model.ConfirmPassword)
+                {
+                    var user = new ApplicationUser
+                    {
+                        UserName = model.UserName,
+                        Email = model.Email,
+                        Role = (byte)UserRoles.Driver,
+                        PhoneNumber = model.Phone,
+                    };
+
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        return Ok(await _driverService.AddDriverToUserAsync(model, user));
+                    }
+                    else
+                        return BadRequest();
+                }
+
+                return BadRequest();
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
+        }
 
         private async Task<IActionResult> GenerateProfileWithToken(LoginModel model)
         {
