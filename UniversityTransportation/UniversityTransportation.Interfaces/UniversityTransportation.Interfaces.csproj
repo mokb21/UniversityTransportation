@@ -7,6 +7,7 @@
   <ItemGroup>
     <ProjectReference Include="..\UniversityTransportation.Data\UniversityTransportation.Data.csproj" />
     <ProjectReference Include="..\UniversityTransportation.DTO\UniversityTransportation.DTO.csproj" />
+    <ProjectReference Include="..\UniversityTransportation.Models\UniversityTransportation.Models.csproj" />
   </ItemGroup>
 
 </Project>
