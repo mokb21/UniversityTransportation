@@ -26,18 +26,20 @@ namespace UniversityTransportation.API.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IDriverService _driverService;
-
+        private readonly IPassengerService _passengerService;
 
         public AccountsController(
             ILogger<AccountsController> logger,
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IDriverService driverService)
+            IDriverService driverService,
+            IPassengerService passengerService)
         {
             _logger = logger;
             _userManager = userManager;
             _signInManager = signInManager;
             _driverService = driverService;
+            _passengerService = passengerService;
         }
 
         [HttpPost]
@@ -116,6 +118,42 @@ namespace UniversityTransportation.API.Controllers
                     if (result.Succeeded)
                     {
                         return Ok(await _driverService.AddDriverToUserAsync(model, user));
+                    }
+                    else
+                        return BadRequest();
+                }
+
+                return BadRequest();
+            }
+            catch (Exception)
+            {
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<IActionResult> RegisterPassenger([FromBody] DTO.Accounts.Passenger model)
+        {
+            try
+            {
+                if (model.UserName != null &&
+                    model.Email != null &&
+                    model.Password != null &&
+                    model.Password == model.ConfirmPassword)
+                {
+                    var user = new ApplicationUser
+                    {
+                        UserName = model.UserName,
+                        Email = model.Email,
+                        Role = (byte)UserRoles.Passenger,
+                        PhoneNumber = model.Phone,
+                    };
+
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        return Ok(await _passengerService.AddDPassengerToUserAsync(model, user));
                     }
                     else
                         return BadRequest();

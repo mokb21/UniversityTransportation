@@ -26,6 +26,13 @@ namespace UniversityTransportation.Services.AutoMapper
                     .ForMember(dst => dst.Email, opt => opt.MapFrom(srs => srs.ApplicationUser.Email))
                     .ForMember(dst => dst.Phone, opt => opt.MapFrom(srs => srs.ApplicationUser.PhoneNumber))
                     .ReverseMap();
+
+                cfg.CreateMap<Passenger, DTO.Accounts.Passenger>()
+                    .ForMember(dst => dst.Id, opt => opt.MapFrom(srs => srs.ApplicationUser.Id))
+                    .ForMember(dst => dst.UserName, opt => opt.MapFrom(srs => srs.ApplicationUser.UserName))
+                    .ForMember(dst => dst.Email, opt => opt.MapFrom(srs => srs.ApplicationUser.Email))
+                    .ForMember(dst => dst.Phone, opt => opt.MapFrom(srs => srs.ApplicationUser.PhoneNumber))
+                    .ReverseMap();
             });
         }
 

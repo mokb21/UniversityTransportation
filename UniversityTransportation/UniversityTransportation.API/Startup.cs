@@ -102,9 +102,11 @@ namespace UniversityTransportation.API
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IStationRepository, StationRepository>();
             services.AddTransient<IDriverRepository, DriverRepository>();
+            services.AddTransient<IPassengerRepository, PassengerRepository>();
 
             services.AddTransient<IStationService, StationService>();
             services.AddTransient<IDriverService, DriverService>();
+            services.AddTransient<IPassengerService, PassengerService>();
 
             services.AddSwaggerGen(options =>
             {
