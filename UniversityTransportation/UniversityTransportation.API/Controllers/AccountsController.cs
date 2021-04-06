@@ -125,7 +125,7 @@ namespace UniversityTransportation.API.Controllers
 
                 return BadRequest();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }

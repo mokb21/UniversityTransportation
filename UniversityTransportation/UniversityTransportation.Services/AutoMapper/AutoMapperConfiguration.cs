@@ -21,18 +21,21 @@ namespace UniversityTransportation.Services.AutoMapper
                     .ReverseMap();
 
                 cfg.CreateMap<Driver, DTO.Accounts.Driver>()
-                    .ForMember(dst => dst.Id, opt => opt.MapFrom(srs => srs.ApplicationUser.Id))
+                    .ForMember(dst => dst.Id, opt => opt.MapFrom(srs => srs.ApplicationUser.DriverId))
                     .ForMember(dst => dst.UserName, opt => opt.MapFrom(srs => srs.ApplicationUser.UserName))
                     .ForMember(dst => dst.Email, opt => opt.MapFrom(srs => srs.ApplicationUser.Email))
                     .ForMember(dst => dst.Phone, opt => opt.MapFrom(srs => srs.ApplicationUser.PhoneNumber))
                     .ReverseMap();
 
                 cfg.CreateMap<Passenger, DTO.Accounts.Passenger>()
-                    .ForMember(dst => dst.Id, opt => opt.MapFrom(srs => srs.ApplicationUser.Id))
+                    .ForMember(dst => dst.Id, opt => opt.MapFrom(srs => srs.ApplicationUser.PassengerId))
                     .ForMember(dst => dst.UserName, opt => opt.MapFrom(srs => srs.ApplicationUser.UserName))
                     .ForMember(dst => dst.Email, opt => opt.MapFrom(srs => srs.ApplicationUser.Email))
                     .ForMember(dst => dst.Phone, opt => opt.MapFrom(srs => srs.ApplicationUser.PhoneNumber))
                     .ReverseMap();
+
+                cfg.CreateMap<Journey, DTO.Journey.Journey>()
+                .ReverseMap();
             });
         }
 
