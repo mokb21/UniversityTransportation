@@ -124,12 +124,12 @@ namespace UniversityTransportation.API
 
         public void Configure(IApplicationBuilder app)
         {
-            if (Environment.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UniversityTransportation.API v1"));
-            }
+            //if (Environment.IsDevelopment())
+            //{
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "UniversityTransportation.API v1"));
+            //}
             app.UseCors("AllowAll");
 
             app.UseHttpsRedirection();
