@@ -14,18 +14,27 @@ namespace UniversityTransportation.DTO.Accounts
         [Required]
         public string UserName { get; set; }
 
+        [Required]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
-        
+
+        [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
+        [Required]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
 
+        [Required]
         public string Phone { get; set; }
 
         public Guid? QRCode { get; set; }
 
+        [Required]
         public string BusBuiltNumber { get; set; }
 
+        [Required]
         public int NumberOfChairs { get; set; }
 
         public byte[] Image { get; set; }
