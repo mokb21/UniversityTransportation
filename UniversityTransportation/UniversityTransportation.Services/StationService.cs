@@ -28,6 +28,8 @@ namespace UniversityTransportation.Services
         {
             try
             {
+                station.Id = Guid.NewGuid();
+                station.CreateDate = DateTime.Now;
                 var result = await _stationRepository.AddAsync(_mapper.Map<Station, Data.Models.Journey.Station>(station));
                 return _mapper.Map<Data.Models.Journey.Station, Station>(result);
             }
@@ -79,6 +81,7 @@ namespace UniversityTransportation.Services
         {
             try
             {
+                station.LastUpdateDate = DateTime.Now;
                 var result = await _stationRepository.UpdateAsync(_mapper.Map<Station, Data.Models.Journey.Station>(station));
                 return _mapper.Map<Data.Models.Journey.Station, Station>(result);
             }

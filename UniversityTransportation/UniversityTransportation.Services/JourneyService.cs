@@ -29,6 +29,7 @@ namespace UniversityTransportation.Services
             try
             {
                 journey.CreateDate = DateTime.Now;
+                journey.Id = Guid.NewGuid();
                 var result = await _journeyRepository.AddAsync(_mapper.Map<Journey, Data.Models.Journey.Journey>(journey));
                 return _mapper.Map<Data.Models.Journey.Journey, Journey>(result);
             }

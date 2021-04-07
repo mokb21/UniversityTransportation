@@ -12,5 +12,7 @@ namespace UniversityTransportation.DTO.Journey
         public string Name { get; set; }
         public double Longitude { get; set; }
         public double Latitude { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime LastUpdateDate { get; set; }
     }
 }

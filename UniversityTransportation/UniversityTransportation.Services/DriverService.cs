@@ -31,8 +31,9 @@ namespace UniversityTransportation.Services
             {
                 //Add User to Driver and QRCode after mapping
                 var dataDriver = _mapper.Map<Driver, Data.Models.Accounts.Driver>(driver);
-                dataDriver.ApplicationUser = user;
+                dataDriver.Id = Guid.NewGuid();
                 dataDriver.QRCode = Guid.NewGuid();
+                dataDriver.ApplicationUser = user;
 
                 var result = await _driverRepository.AddAsync(dataDriver);
 

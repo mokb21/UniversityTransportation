@@ -31,6 +31,7 @@ namespace UniversityTransportation.Services
             {
                 //Add User to Passenger
                 var dataPassenger = _mapper.Map<Passenger, Data.Models.Accounts.Passenger>(passenger);
+                dataPassenger.Id = Guid.NewGuid();
                 dataPassenger.ApplicationUser = user;
 
                 var result = await _passengerRepository.AddAsync(dataPassenger);
