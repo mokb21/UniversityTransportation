@@ -35,7 +35,10 @@ namespace UniversityTransportation.Services.AutoMapper
                     .ReverseMap();
 
                 cfg.CreateMap<Journey, DTO.Journey.Journey>()
-                .ReverseMap();
+                    .ReverseMap();
+
+                cfg.CreateMap<JourneyStation, DTO.Journey.JourneyStation>()
+                    .ReverseMap();
             });
         }
 

@@ -32,6 +32,7 @@ namespace UniversityTransportation.DTO.Journey
         public string RepeatDays { get; set; }
 
         public Guid DriverId { get; set; }
-       
+
+        public List<JourneyStation> JourneyStations { get; set; }
     }
 }
