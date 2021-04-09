@@ -48,19 +48,25 @@ namespace UniversityTransportation.Repository
             {
                 throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
             }
-
+            var transaction = await _applicationContext.Database.BeginTransactionAsync();
             try
             {
-                _applicationContext.Attach(entity);
-                _applicationContext.Entry(entity).State = EntityState.Modified;
 
-                _applicationContext.Journeys.Update(entity);
+                _applicationContext.JourneyStations.RemoveRange(_applicationContext.JourneyStations.Where(e => e.JourneyId == entity.Id));
                 await _applicationContext.SaveChangesAsync();
+
+
+                _applicationContext.JourneyStations.AddRange(entity.JourneyStations);
+                _applicationContext.Update(entity);
+
+                await _applicationContext.SaveChangesAsync();
+                await transaction.CommitAsync();
 
                 return entity;
             }
             catch (Exception ex)
             {
+                await transaction.RollbackAsync();
                 throw new Exception($"{nameof(entity)} could not be saved: {ex.Message}");
             }
         }
