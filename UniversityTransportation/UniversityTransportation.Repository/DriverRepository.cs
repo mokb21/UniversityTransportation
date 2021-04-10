@@ -65,5 +65,29 @@ namespace UniversityTransportation.Repository
                 throw new Exception($"Couldn't retrieve entities: {ex.Message}");
             }
         }
+
+        public override void Delete(Guid Id)
+        {
+            try
+            {
+                var entity = _applicationContext.Drivers.Find(Id);
+
+                if (entity == null)
+                {
+                    throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
+                }
+
+                var user = _applicationContext.Users.FirstOrDefault(e => e.DriverId == Id);
+                _applicationContext.Users.Remove(user);
+
+                _applicationContext.Drivers.Remove(entity);
+
+                _applicationContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
     }
 }

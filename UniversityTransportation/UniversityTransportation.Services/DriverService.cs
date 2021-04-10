@@ -77,5 +77,17 @@ namespace UniversityTransportation.Services
                 throw new Exception($"Couldn't retrieve entities: {ex.Message}");
             }
         }
+
+        public void DeleteDriver(Guid Id)
+        {
+            try
+            {
+                _driverRepository.Delete(Id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"could not delete entity: {ex.Message}");
+            }
+        }
     }
 }

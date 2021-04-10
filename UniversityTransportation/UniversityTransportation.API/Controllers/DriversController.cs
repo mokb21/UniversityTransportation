@@ -39,5 +39,19 @@ namespace UniversityTransportation.API.Controllers
                 return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpDelete]
+        public IActionResult Delete(Guid Id)
+        {
+            try
+            {
+                _driverService.DeleteDriver(Id);
+                return NoContent();
+            }
+            catch (Exception ex)
+            {
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
+        }
     }
 }

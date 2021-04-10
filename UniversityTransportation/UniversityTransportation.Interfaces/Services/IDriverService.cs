@@ -15,5 +15,7 @@ namespace UniversityTransportation.Interfaces.Services
         List<Driver> GetAllDrivers();
 
         Driver GetDriver(Guid Id);
+
+        void DeleteDriver(Guid Id);
     }
 }
