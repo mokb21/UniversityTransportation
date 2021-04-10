@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -38,6 +39,30 @@ namespace UniversityTransportation.Repository
             catch (Exception ex)
             {
                 throw new Exception($"{nameof(entity)} could not be saved: {ex.Message}");
+            }
+        }
+
+        public override Driver Get(Guid Id)
+        {
+            try
+            {
+                return _applicationContext.Drivers.Include(e => e.ApplicationUser).FirstOrDefault(e => e.Id == Id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
+
+        public override IQueryable<Driver> GetAll()
+        {
+            try
+            {
+                return _applicationContext.Drivers.Include(e => e.ApplicationUser);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
             }
         }
     }

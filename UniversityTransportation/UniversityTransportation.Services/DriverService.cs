@@ -44,5 +44,38 @@ namespace UniversityTransportation.Services
                 throw new Exception($"{nameof(driver)} could not be saved: {ex.Message}");
             }
         }
+
+        public List<Driver> GetAllDrivers()
+        {
+            try
+            {
+                var results = _driverRepository.GetAll().ToList();
+                return _mapper.Map<List<Data.Models.Accounts.Driver>, List<Driver>>(results);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
+
+        public Driver GetDriver(Guid Id)
+        {
+            try
+            {
+                try
+                {
+                    var results = _driverRepository.Get(Id);
+                    return _mapper.Map<Data.Models.Accounts.Driver, Driver>(results);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Couldn't retrieve entity: {ex.Message}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
     }
 }
