@@ -62,19 +62,12 @@ namespace UniversityTransportation.Services
         {
             try
             {
-                try
-                {
-                    var results = _driverRepository.Get(Id);
-                    return _mapper.Map<Data.Models.Accounts.Driver, Driver>(results);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception($"Couldn't retrieve entity: {ex.Message}");
-                }
+                var results = _driverRepository.Get(Id);
+                return _mapper.Map<Data.Models.Accounts.Driver, Driver>(results);
             }
             catch (Exception ex)
             {
-                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+                throw new Exception($"Couldn't retrieve entity: {ex.Message}");
             }
         }
 

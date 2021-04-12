@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,6 +38,53 @@ namespace UniversityTransportation.Repository
             catch (Exception ex)
             {
                 throw new Exception($"{nameof(entity)} could not be saved: {ex.Message}");
+            }
+        }
+
+        public override Passenger Get(Guid Id)
+        {
+            try
+            {
+                return _applicationContext.Passengers.Include(e => e.ApplicationUser).FirstOrDefault(e => e.Id == Id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
+
+        public override IQueryable<Passenger> GetAll()
+        {
+            try
+            {
+                return _applicationContext.Passengers.Include(e => e.ApplicationUser);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
+
+        public override void Delete(Guid Id)
+        {
+            try
+            {
+                var entity = _applicationContext.Passengers.Find(Id);
+
+                if (entity == null)
+                {
+                    throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
+                }
+
+                var user = _applicationContext.Users.FirstOrDefault(e => e.PassengerId == Id);
+                _applicationContext.Users.Remove(user);
+
+                _applicationContext.Passengers.Remove(entity);
+                _applicationContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
             }
         }
     }
