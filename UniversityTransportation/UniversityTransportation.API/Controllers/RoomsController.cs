@@ -6,8 +6,8 @@ using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
+using UniversityTransportation.DTO.Journey;
 using UniversityTransportation.Interfaces.Services;
 
 namespace UniversityTransportation.API.Controllers
@@ -15,16 +15,13 @@ namespace UniversityTransportation.API.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-
-    public class PassengersController : ControllerBase
+    public class RoomsController : ControllerBase
     {
-        private readonly IPassengerService _passengerService;
-        private readonly ILogger<PassengersController> _logger;
-
-
-        public PassengersController(IPassengerService passengerService, ILogger<PassengersController> logger)
+        private readonly IRoomService _roomService;
+        private readonly ILogger<RoomsController> _logger;
+        public RoomsController(IRoomService roomService, ILogger<RoomsController> logger)
         {
-            _passengerService = passengerService;
+            _roomService = roomService;
             _logger = logger;
         }
 
@@ -33,24 +30,49 @@ namespace UniversityTransportation.API.Controllers
         {
             try
             {
-                //return BadRequest("Client Error Your Angular Code is Fucked up!! Fuck you grandfather Ardogan");
-                
                 if (Id.HasValue)
-                    return Ok(_passengerService.GetPassenger(Id.Value));
+                    return Ok(_roomService.GetRoom(Id.Value));
                 else
-                    return Ok(_passengerService.GetAllPassengers());
+                    return Ok(_roomService.GetAllRooms());
             }
             catch (Exception)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Post([FromBody] Room room)
+        {
+            try
+            {
+                return Ok(await _roomService.AddRoomAsync(room));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> Put([FromBody] Room room)
+        {
+            try
+            {
+                return Ok(await _roomService.UpdateRoomAsync(room));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
         [HttpDelete]
         public IActionResult Delete(Guid Id)
         {
             try
             {
-                _passengerService.DeletePassenger(Id);
+                _roomService.DeleteRoom(Id);
                 return NoContent();
             }
             catch (Exception)
