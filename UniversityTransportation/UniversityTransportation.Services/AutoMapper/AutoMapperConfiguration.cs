@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UniversityTransportation.Data.Models.Accounts;
 using UniversityTransportation.Data.Models.Journey;
+using UniversityTransportation.Data.Models.Trip;
 
 namespace UniversityTransportation.Services.AutoMapper
 {
@@ -41,7 +42,10 @@ namespace UniversityTransportation.Services.AutoMapper
                     .ReverseMap();
 
                 cfg.CreateMap<Room, DTO.Journey.Room>()
-                .ReverseMap();
+                    .ReverseMap();
+
+                cfg.CreateMap<RequestTrip, DTO.Trip.RequestTrip>()
+                   .ReverseMap();
             });
         }
 
