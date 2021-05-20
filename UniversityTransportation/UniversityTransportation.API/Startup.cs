@@ -16,6 +16,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniversityTransportation.API.Hubs;
 using UniversityTransportation.Data;
 using UniversityTransportation.Data.Models;
 using UniversityTransportation.Interfaces.Repository;
@@ -42,6 +43,8 @@ namespace UniversityTransportation.API
             services.AddControllers();
 
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Constants.ConfigurationConstants.ConnectionString));
+
+            services.AddSignalR();
 
             services.Configure<CookiePolicyOptions>(options =>
             {
@@ -149,6 +152,7 @@ namespace UniversityTransportation.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<TrackingHub>("/trackingHub");
             });
         }
     }
