@@ -176,7 +176,18 @@ namespace UniversityTransportation.API.Controllers
                 var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
 
                 if (result.Succeeded)
-                    return Ok(await GetToken(user));
+                {
+                    return Ok(new
+                    {
+                        token = await GetToken(user),
+                        user = new
+                        {
+                            id = user.Id,
+                            role = user.Role,
+                            userName = user.UserName,
+                        }
+                    });
+                }
 
                 return BadRequest();
             }
