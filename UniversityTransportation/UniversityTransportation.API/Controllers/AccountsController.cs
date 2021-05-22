@@ -182,7 +182,9 @@ namespace UniversityTransportation.API.Controllers
                         token = await GetToken(user),
                         user = new
                         {
-                            id = user.Id,
+                            id = user.Role == (byte)UserRoles.Passenger ? user.PassengerId.Value :
+                                user.Role == (byte)UserRoles.Driver ? user.DriverId.Value :
+                                user.Id,
                             role = user.Role,
                             userName = user.UserName,
                         }
