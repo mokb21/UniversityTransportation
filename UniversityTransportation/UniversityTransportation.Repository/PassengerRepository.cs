@@ -30,6 +30,9 @@ namespace UniversityTransportation.Repository
                 if (_applicationContext.Passengers.Any(e => e.UniversityId == entity.UniversityId))
                     throw new Exception($"University Id must be Unique");
 
+                if (_applicationContext.Passengers.Any(e => e.QRCode == entity.QRCode))
+                    throw new Exception($"QR Code must be Unique");
+
                 await _applicationContext.AddAsync(entity);
                 await _applicationContext.SaveChangesAsync();
 

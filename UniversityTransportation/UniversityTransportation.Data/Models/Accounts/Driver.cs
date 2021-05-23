@@ -13,9 +13,6 @@ namespace UniversityTransportation.Data.Models.Accounts
         [Key]
         public Guid Id { get; set; }
 
-        [Required]
-        public Guid QRCode { get; set; }
-
         public byte[] Image { get; set; }
 
         [Required]

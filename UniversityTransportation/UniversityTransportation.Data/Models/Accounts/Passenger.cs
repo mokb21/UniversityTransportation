@@ -18,6 +18,9 @@ namespace UniversityTransportation.Data.Models.Accounts
         [MaxLength(200)]
         public string UniversityId { get; set; }
 
+        [Required]
+        public Guid QRCode { get; set; }
+
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public virtual ICollection<PassengerJourneyStation> PassengerJourneyStations { get; set; }

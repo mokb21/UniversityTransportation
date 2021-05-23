@@ -29,8 +29,6 @@ namespace UniversityTransportation.DTO.Accounts
         [Required]
         public string Phone { get; set; }
 
-        public Guid? QRCode { get; set; }
-
         [Required]
         public string BusBuiltNumber { get; set; }
 

@@ -19,29 +19,6 @@ namespace UniversityTransportation.Repository
             _applicationContext = applicationContext;
         }
 
-        public override async Task<Driver> AddAsync(Driver entity)
-        {
-            if (entity == null)
-            {
-                throw new ArgumentNullException($"{nameof(AddAsync)} entity must not be null");
-            }
-
-            try
-            {
-                if (_applicationContext.Drivers.Any(e => e.QRCode == entity.QRCode))
-                    throw new Exception($"QR Code must be Unique");
-
-                await _applicationContext.AddAsync(entity);
-                await _applicationContext.SaveChangesAsync();
-
-                return entity;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"{nameof(entity)} could not be saved: {ex.Message}");
-            }
-        }
-
         public override Driver Get(Guid Id)
         {
             try

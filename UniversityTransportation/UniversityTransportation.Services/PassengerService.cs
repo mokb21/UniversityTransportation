@@ -29,9 +29,10 @@ namespace UniversityTransportation.Services
         {
             try
             {
-                //Add User to Passenger
+                //Add User to Passenger and QRCode after mapping
                 var dataPassenger = _mapper.Map<Passenger, Data.Models.Accounts.Passenger>(passenger);
                 dataPassenger.Id = Guid.NewGuid();
+                dataPassenger.QRCode = Guid.NewGuid();
                 dataPassenger.ApplicationUser = user;
 
                 var result = await _passengerRepository.AddAsync(dataPassenger);
