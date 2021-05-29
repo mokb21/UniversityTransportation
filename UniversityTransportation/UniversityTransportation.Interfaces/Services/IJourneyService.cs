@@ -15,6 +15,8 @@ namespace UniversityTransportation.Interfaces.Services
 
         List<Journey> GetAllJourneys();
 
+        List<Journey> GetJourneysByDriverId(Guid DriverId);
+
         Journey GetJourney(Guid Id);
 
         Task<Journey> UpdateJourneyAsync(Journey journey);

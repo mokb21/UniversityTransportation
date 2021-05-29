@@ -70,5 +70,17 @@ namespace UniversityTransportation.Repository
                 throw new Exception($"{nameof(entity)} could not be saved: {ex.Message}");
             }
         }
+
+        public IQueryable<Journey> GetJourneysByDriverId(Guid DriverId)
+        {
+            try
+            {
+                return _applicationContext.Journeys.Include(e => e.JourneyStations).Where(e => e.DriverId == DriverId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
     }
 }

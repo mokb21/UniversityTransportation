@@ -9,6 +9,6 @@ namespace UniversityTransportation.Interfaces.Repository
 {
     public interface IJourneyRepository : IRepository<Journey>
     {
-
+        IQueryable<Journey> GetJourneysByDriverId(Guid DriverId);
     }
 }

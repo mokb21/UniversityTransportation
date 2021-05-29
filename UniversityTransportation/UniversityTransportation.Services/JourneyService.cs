@@ -77,6 +77,19 @@ namespace UniversityTransportation.Services
             }
         }
 
+        public List<Journey> GetJourneysByDriverId(Guid DriverId)
+        {
+            try
+            {
+                var results = _journeyRepository.GetJourneysByDriverId(DriverId).ToList();
+                return _mapper.Map<List<Data.Models.Journey.Journey>, List<Journey>>(results);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
+
         public async Task<Journey> UpdateJourneyAsync(Journey journey)
         {
             try
