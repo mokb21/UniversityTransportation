@@ -187,6 +187,8 @@ namespace UniversityTransportation.API.Controllers
                                 user.Id,
                             role = user.Role,
                             userName = user.UserName,
+                            email = user.Email,
+                            phone = user.PhoneNumber,
                         }
                     });
                 }
