@@ -97,7 +97,11 @@ namespace UniversityTransportation.API
                 });
 
             services.AddCors(options => options.AddPolicy("AllowAll",
-                options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader()));
+                options =>
+                options.WithOrigins("http://localhost:4200")
+                .AllowAnyMethod()
+                .AllowAnyHeader()
+                .AllowCredentials()));
 
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
