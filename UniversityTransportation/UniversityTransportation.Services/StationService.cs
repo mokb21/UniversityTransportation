@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UniversityTransportation.DTO.Journey;
 using UniversityTransportation.Interfaces.Repository;
 using UniversityTransportation.Interfaces.Services;
+using UniversityTransportation.Models;
 using UniversityTransportation.Services.AutoMapper;
 
 namespace UniversityTransportation.Services
@@ -74,6 +75,19 @@ namespace UniversityTransportation.Services
             catch (Exception ex)
             {
                 throw new Exception($"Couldn't retrieve entity: {ex.Message}");
+            }
+        }
+
+        public List<DetailedJourneyStationModel> GetDetailedStationsByJourneyId(Guid JourneyId)
+        {
+            try
+            {
+                var results = _stationRepository.GetDetailedStationsByJourneyId(JourneyId).ToList();
+                return _mapper.Map<List<Data.Models.Journey.JourneyStation>, List<DetailedJourneyStationModel>>(results);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
             }
         }
 

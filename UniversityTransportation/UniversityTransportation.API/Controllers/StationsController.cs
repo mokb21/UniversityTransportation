@@ -12,7 +12,7 @@ using UniversityTransportation.Interfaces.Services;
 
 namespace UniversityTransportation.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     public class StationsController : ControllerBase
@@ -35,6 +35,19 @@ namespace UniversityTransportation.API.Controllers
                     return Ok(_stationService.GetStation(Id.Value));
                 else
                     return Ok(_stationService.GetAllStations());
+            }
+            catch (Exception ex)
+            {
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
+        }
+
+        [HttpGet]
+        public IActionResult GetByJourneyId(Guid JourneyId)
+        {
+            try
+            {
+                return Ok(_stationService.GetDetailedStationsByJourneyId(JourneyId));
             }
             catch (Exception ex)
             {

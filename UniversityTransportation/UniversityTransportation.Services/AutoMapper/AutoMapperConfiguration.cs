@@ -46,6 +46,16 @@ namespace UniversityTransportation.Services.AutoMapper
 
                 cfg.CreateMap<RequestTrip, DTO.Trip.RequestTrip>()
                    .ReverseMap();
+
+                cfg.CreateMap<JourneyStation, Models.DetailedJourneyStationModel>()
+                    .ForMember(dst => dst.Id, opt => opt.MapFrom(srs => srs.Station.Id))
+                    .ForMember(dst => dst.Name, opt => opt.MapFrom(srs => srs.Station.Name))
+                    .ForMember(dst => dst.CreateDate, opt => opt.MapFrom(srs => srs.Station.CreateDate))
+                    .ForMember(dst => dst.LastUpdateDate, opt => opt.MapFrom(srs => srs.Station.LastUpdateDate))
+                    .ForMember(dst => dst.Longitude, opt => opt.MapFrom(srs => srs.Station.Longitude))
+                    .ForMember(dst => dst.Latitude, opt => opt.MapFrom(srs => srs.Station.Latitude))
+                    .ForMember(dst => dst.ArrivalDate, opt => opt.MapFrom(srs => srs.ArrivalDate))
+                    .ReverseMap();
             });
         }
 

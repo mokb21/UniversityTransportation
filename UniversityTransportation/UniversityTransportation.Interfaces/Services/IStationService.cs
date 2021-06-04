@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UniversityTransportation.DTO.Journey;
+using UniversityTransportation.Models;
 
 namespace UniversityTransportation.Interfaces.Services
 {
@@ -18,5 +19,8 @@ namespace UniversityTransportation.Interfaces.Services
         Task<Station> UpdateStationAsync(Station station);
 
         void DeleteStation(Guid Id);
+
+        List<DetailedJourneyStationModel> GetDetailedStationsByJourneyId(Guid JourneyId);
+
     }
 }
