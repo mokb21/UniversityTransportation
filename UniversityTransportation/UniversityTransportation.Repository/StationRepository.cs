@@ -23,7 +23,7 @@ namespace UniversityTransportation.Repository
         {
             try
             {
-                return _applicationContext.JourneyStations.Include(e => e.Station).Where(e => e.JourneyId == JourneyId);
+                return _applicationContext.JourneyStations.Include(e => e.Station).OrderBy(e => e.ArrivalDate).Where(e => e.JourneyId == JourneyId);
             }
             catch (Exception ex)
             {
