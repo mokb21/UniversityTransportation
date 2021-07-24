@@ -28,5 +28,7 @@ namespace UniversityTransportation.Data.Models.Accounts
         public virtual ICollection<TripPassenger> TripPassengers { get; set; }
 
         public virtual ICollection<RequestTrip> RequestTrips { get; set; }
+
+        public virtual ICollection<Room> Rooms { get; set; }
     }
 }

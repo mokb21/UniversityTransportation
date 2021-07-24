@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniversityTransportation.Data.Models.Accounts;
 
 namespace UniversityTransportation.Data.Models.Journey
 {
@@ -22,5 +23,7 @@ namespace UniversityTransportation.Data.Models.Journey
 
         [Required]
         public DateTime EndTime { get; set; }
+
+        public virtual ICollection<Passenger> Passengers { get; set; }
     }
 }
