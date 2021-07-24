@@ -26,8 +26,8 @@ namespace UniversityTransportation.DTO.Journey
 
         public bool IsAdditional { get; set; }
         public bool IsRequestable { get; set; }
-
         public bool IsRepeatable { get; set; }
+        public bool IsStarted { get; set; }
 
         public string RepeatDays { get; set; }
 

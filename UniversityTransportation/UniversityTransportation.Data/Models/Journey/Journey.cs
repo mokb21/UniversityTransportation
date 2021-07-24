@@ -29,8 +29,9 @@ namespace UniversityTransportation.Data.Models.Journey
 
         public bool IsAdditional { get; set; }
         public bool IsRequestable { get; set; }
-
         public bool IsRepeatable { get; set; }
+        public bool IsStarted { get; set; }
+
         [MaxLength(200)]
         public string RepeatDays { get; set; }
 

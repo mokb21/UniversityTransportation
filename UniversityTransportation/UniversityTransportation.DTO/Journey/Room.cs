@@ -19,8 +19,5 @@ namespace UniversityTransportation.DTO.Journey
 
         [Required]
         public DateTime EndTime { get; set; }
-
-        [Required]
-        public int PassengerNumber { get; set; }
     }
 }

@@ -21,5 +21,7 @@ namespace UniversityTransportation.Data.Models.Journey
 
         [Required]
         public DateTime RegistrationDate { get; set; }
+
+        public bool IsDeleted { get; set; }
     }
 }
