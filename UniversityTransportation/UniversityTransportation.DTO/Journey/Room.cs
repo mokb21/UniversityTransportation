@@ -15,6 +15,8 @@ namespace UniversityTransportation.DTO.Journey
         [Required]
         public Guid JourneyId { get; set; }
 
+        public Journey Journey { get; set; }
+
         [Required]
         public DateTime StartTime { get; set; }
 

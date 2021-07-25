@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,6 +18,32 @@ namespace UniversityTransportation.Repository
             _applicationContext = applicationContext;
         }
 
+        public override Room Get(Guid Id)
+        {
+            try
+            {
+                return _applicationContext.Rooms
+                    .Include(e => e.Journey)
+                    .Include(e => e.Passengers).ThenInclude(e => e.ApplicationUser).FirstOrDefault(e => e.Id == Id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
 
+        public override IQueryable<Room> GetAll()
+        {
+            try
+            {
+                return _applicationContext.Rooms
+                    .Include(e => e.Journey)
+                    .Include(e => e.Passengers).ThenInclude(e => e.ApplicationUser);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
     }
 }
