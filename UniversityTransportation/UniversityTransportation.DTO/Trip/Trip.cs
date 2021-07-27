@@ -5,11 +5,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UniversityTransportation.Data.Models.Trip
+namespace UniversityTransportation.DTO.Trip
 {
     public class Trip
     {
-        [Key]
         public Guid Id { get; set; }
 
         [Required]
@@ -19,10 +18,5 @@ namespace UniversityTransportation.Data.Models.Trip
 
         [Required]
         public Guid JourneyId { get; set; }
-
-        public virtual Journey.Journey Journey { get; set; }
-
-        public virtual ICollection<TripPassenger> TripPassengers { get; set; }
-
     }
 }

@@ -56,6 +56,9 @@ namespace UniversityTransportation.Services.AutoMapper
                     .ForMember(dst => dst.Latitude, opt => opt.MapFrom(srs => srs.Station.Latitude))
                     .ForMember(dst => dst.ArrivalDate, opt => opt.MapFrom(srs => srs.ArrivalDate))
                     .ReverseMap();
+
+                cfg.CreateMap<Trip, DTO.Trip.Trip>()
+                   .ReverseMap();
             });
         }
 
