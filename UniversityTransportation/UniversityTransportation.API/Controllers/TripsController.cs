@@ -50,5 +50,18 @@ namespace UniversityTransportation.API.Controllers
                 return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpGet]
+        public async Task<IActionResult> AddPassenger(Guid journeyId, Guid qrCode)
+        {
+            try
+            {
+                return Ok(await _tripService.AddPassengerToTripAsync(journeyId, qrCode));
+            }
+            catch (Exception ex)
+            {
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
+        }
     }
 }

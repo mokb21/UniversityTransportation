@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniversityTransportation.DTO.Accounts;
 using UniversityTransportation.DTO.Trip;
 using UniversityTransportation.Interfaces.Repository;
 using UniversityTransportation.Interfaces.Services;
@@ -47,6 +48,19 @@ namespace UniversityTransportation.Services
             catch (Exception ex)
             {
                 throw new Exception($"{nameof(EndTripAsync)} could not end a trip: {ex.Message}");
+            }
+        }
+
+        public async Task<Passenger> AddPassengerToTripAsync(Guid journeyId, Guid qrCode)
+        {
+            try
+            {
+                var result = await _tripRepository.AddPassengerToTripAsync(journeyId, qrCode);
+                return _mapper.Map<Data.Models.Accounts.Passenger, Passenger>(result);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{nameof(AddPassengerToTripAsync)} could not add passenger to trip: {ex.Message}");
             }
         }
     }
