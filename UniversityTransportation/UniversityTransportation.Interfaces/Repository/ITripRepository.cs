@@ -15,5 +15,7 @@ namespace UniversityTransportation.Interfaces.Repository
         Task<Trip> EndTripAsync(Guid journeyId);
 
         Task<Passenger> AddPassengerToTripAsync(Guid journeyId, Guid qrCode);
+
+        List<Passenger> GetTripPassengers(Guid journeyId);
     }
 }

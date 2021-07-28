@@ -63,5 +63,18 @@ namespace UniversityTransportation.Services
                 throw new Exception($"{nameof(AddPassengerToTripAsync)} could not add passenger to trip: {ex.Message}");
             }
         }
+
+        public List<Passenger> GetTripPassengers(Guid journeyId)
+        {
+            try
+            {
+                var result = _tripRepository.GetTripPassengers(journeyId).ToList();
+                return _mapper.Map<List<Data.Models.Accounts.Passenger>, List<Passenger>>(result);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{nameof(GetTripPassengers)} could not add passenger to trip: {ex.Message}");
+            }
+        }
     }
 }

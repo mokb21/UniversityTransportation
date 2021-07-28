@@ -124,5 +124,38 @@ namespace UniversityTransportation.Repository
                 throw new Exception($"{nameof(AddPassengerToTripAsync)} could not be saved: {ex.Message}");
             }
         }
+
+        public List<Passenger> GetTripPassengers(Guid journeyId)
+        {
+            try
+            {
+                var journey = _applicationContext.Journeys
+                    .Include(e => e.Trips).ThenInclude(e => e.TripPassengers).ThenInclude(e => e.Passenger).ThenInclude(e => e.ApplicationUser)
+                    .FirstOrDefault(e => e.Id == journeyId);
+
+                if (journey == null)
+                {
+                    throw new ArgumentNullException($"{nameof(GetTripPassengers)} journey must not be null");
+                }
+
+                var trip = journey.Trips.OrderByDescending(e => e.StartDate).FirstOrDefault();
+                if (trip == null)
+                {
+                    throw new ArgumentNullException($"{nameof(GetTripPassengers)} trip must not be null");
+                }
+
+                List<Passenger> passengers = new List<Passenger>();
+
+                foreach (var tripPassenger in trip.TripPassengers)
+                    passengers.Add(tripPassenger.Passenger);
+
+                return passengers;
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"{nameof(GetTripPassengers)} could not be saved: {ex.Message}");
+            }
+        }
     }
 }

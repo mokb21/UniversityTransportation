@@ -63,5 +63,18 @@ namespace UniversityTransportation.API.Controllers
                 return new StatusCodeResult(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpGet]
+        public IActionResult GetTripPassengers(Guid journeyId)
+        {
+            try
+            {
+                return Ok(_tripService.GetTripPassengers(journeyId));
+            }
+            catch (Exception ex)
+            {
+                return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            }
+        }
     }
 }
