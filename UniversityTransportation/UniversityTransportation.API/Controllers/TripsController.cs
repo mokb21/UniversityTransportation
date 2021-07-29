@@ -65,7 +65,7 @@ namespace UniversityTransportation.API.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetTripPassengers(Guid journeyId)
+        public IActionResult GetPassengers(Guid journeyId)
         {
             try
             {

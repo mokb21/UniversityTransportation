@@ -159,6 +159,7 @@ namespace UniversityTransportation.API
             {
                 endpoints.MapControllers();
                 endpoints.MapHub<TrackingHub>("/trackingHub");
+                endpoints.MapHub<NotificationsHub>("/notificationsHub");
             });
         }
     }
