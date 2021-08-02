@@ -114,6 +114,7 @@ namespace UniversityTransportation.API
             services.AddTransient<IRoomRepository, RoomRepository>();
             services.AddTransient<IRequestTripRepository, RequestTripRepository>();
             services.AddTransient<ITripRepository, TripRepository>();
+            services.AddTransient<IPassengerJourneyStationRepository, PassengerJourneyStationRepository>();
 
             services.AddTransient<IStationService, StationService>();
             services.AddTransient<IDriverService, DriverService>();
@@ -122,6 +123,7 @@ namespace UniversityTransportation.API
             services.AddTransient<IRoomService, RoomService>();
             services.AddTransient<IRequestTripService, RequestTripService>();
             services.AddTransient<ITripService, TripService>();
+            services.AddTransient<IPassengerJourneyStationService, PassengerJourneyStationService>();
 
             services.AddSwaggerGen(options =>
             {

@@ -59,6 +59,9 @@ namespace UniversityTransportation.Services.AutoMapper
 
                 cfg.CreateMap<Trip, DTO.Trip.Trip>()
                    .ReverseMap();
+
+                cfg.CreateMap<PassengerJourneyStation, DTO.Journey.PassengerJourneyStation>()
+                  .ReverseMap();
             });
         }
 

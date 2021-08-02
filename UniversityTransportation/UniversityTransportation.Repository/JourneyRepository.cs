@@ -10,7 +10,7 @@ using UniversityTransportation.Interfaces.Repository;
 
 namespace UniversityTransportation.Repository
 {
-    public class JourneyRepository : Repository<Data.Models.Journey.Journey>, IJourneyRepository
+    public class JourneyRepository : Repository<Journey>, IJourneyRepository
     {
         private readonly ApplicationContext _applicationContext;
         public JourneyRepository(ApplicationContext applicationContext) : base(applicationContext)
