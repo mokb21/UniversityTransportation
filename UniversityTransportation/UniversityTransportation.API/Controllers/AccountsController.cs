@@ -74,6 +74,7 @@ namespace UniversityTransportation.API.Controllers
                 {
                     var user = new ApplicationUser
                     {
+                        Id = Guid.NewGuid(),
                         UserName = model.UserName,
                         Email = model.Email,
                         Role = (byte)UserRoles.Admin,
@@ -108,6 +109,7 @@ namespace UniversityTransportation.API.Controllers
                 {
                     var user = new ApplicationUser
                     {
+                        Id = Guid.NewGuid(),
                         UserName = model.UserName,
                         Email = model.Email,
                         Role = (byte)UserRoles.Driver,
@@ -144,6 +146,7 @@ namespace UniversityTransportation.API.Controllers
                 {
                     var user = new ApplicationUser
                     {
+                        Id = Guid.NewGuid(),
                         UserName = model.UserName,
                         Email = model.Email,
                         Role = (byte)UserRoles.Passenger,
