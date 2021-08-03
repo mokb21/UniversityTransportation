@@ -22,7 +22,9 @@ namespace UniversityTransportation.Repository
         {
             try
             {
-                return _applicationContext.Journeys.Include(e => e.JourneyStations);
+                return _applicationContext.Journeys
+                    .Include(e => e.JourneyStations).ThenInclude(e => e.Station)
+                    .Include(e => e.Driver).ThenInclude(e => e.ApplicationUser);
             }
             catch (Exception ex)
             {
@@ -34,7 +36,10 @@ namespace UniversityTransportation.Repository
         {
             try
             {
-                return _applicationContext.Journeys.Include(e => e.JourneyStations).FirstOrDefault(e => e.Id == Id);
+                return _applicationContext.Journeys
+                    .Include(e => e.JourneyStations).ThenInclude(e => e.Station)
+                    .Include(e => e.Driver).ThenInclude(e => e.ApplicationUser)
+                    .FirstOrDefault(e => e.Id == Id);
             }
             catch (Exception ex)
             {

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UniversityTransportation.DTO.Accounts;
 
 namespace UniversityTransportation.DTO.Journey
 {
@@ -32,6 +33,7 @@ namespace UniversityTransportation.DTO.Journey
         public string RepeatDays { get; set; }
 
         public Guid DriverId { get; set; }
+        public Driver Driver { get; set; }
 
         public List<JourneyStation> JourneyStations { get; set; }
     }

@@ -13,7 +13,7 @@ namespace UniversityTransportation.DTO.Journey
         //public Journey Journey { get; set; }
 
         public Guid StationId { get; set; }
-        //public Station Station { get; set; }
+        public Station Station { get; set; }
 
         [Required]
         public DateTime ArrivalDate { get; set; }
