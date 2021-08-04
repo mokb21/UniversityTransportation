@@ -42,6 +42,7 @@ namespace UniversityTransportation.Services.AutoMapper
                     .ReverseMap();
 
                 cfg.CreateMap<Room, DTO.Journey.Room>()
+                    .ForMember(dst => dst.PassengersCount, opt => opt.MapFrom(srs => srs.Passengers.Count))
                     .ReverseMap();
 
                 cfg.CreateMap<RequestTrip, DTO.Trip.RequestTrip>()

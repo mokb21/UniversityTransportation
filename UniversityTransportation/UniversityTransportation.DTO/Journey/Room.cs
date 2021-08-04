@@ -24,5 +24,7 @@ namespace UniversityTransportation.DTO.Journey
         public DateTime EndTime { get; set; }
 
         public List<Passenger> Passengers { get; set; }
+
+        public int PassengersCount { get; set; }
     }
 }

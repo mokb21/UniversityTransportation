@@ -23,7 +23,7 @@ namespace UniversityTransportation.Repository
             try
             {
                 return _applicationContext.Rooms
-                    .Include(e => e.Journey)
+                    .Include(e => e.Journey).ThenInclude(e => e.JourneyStations).ThenInclude(e => e.Station)
                     .Include(e => e.Passengers).ThenInclude(e => e.ApplicationUser).FirstOrDefault(e => e.Id == Id);
             }
             catch (Exception ex)
@@ -37,7 +37,7 @@ namespace UniversityTransportation.Repository
             try
             {
                 return _applicationContext.Rooms
-                    .Include(e => e.Journey)
+                    .Include(e => e.Journey).ThenInclude(e => e.JourneyStations).ThenInclude(e => e.Station)
                     .Include(e => e.Passengers).ThenInclude(e => e.ApplicationUser);
             }
             catch (Exception ex)
