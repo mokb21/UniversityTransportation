@@ -45,6 +45,21 @@ namespace UniversityTransportation.API.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("[action]")]
+        public IActionResult BlockUnblock(Guid Id)
+        {
+            try
+            {
+                _passengerService.BlockUnblockPassengerAsync(Id);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
         [HttpPost]
         [Route("[action]")]
         public async Task<IActionResult> VoteRoom(VoteRoomModel voteRoom)
@@ -73,5 +88,7 @@ namespace UniversityTransportation.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+
     }
 }

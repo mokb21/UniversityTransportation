@@ -20,5 +20,7 @@ namespace UniversityTransportation.Interfaces.Services
         void DeletePassenger(Guid Id);
 
         Task<int> VoteRoomAsync(VoteRoomModel voteRoom);
+
+        void BlockUnblockPassengerAsync(Guid Id);
     }
 }

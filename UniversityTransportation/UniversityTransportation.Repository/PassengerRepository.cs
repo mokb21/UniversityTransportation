@@ -123,5 +123,25 @@ namespace UniversityTransportation.Repository
                 throw new Exception($"Couldn't vote room: {ex.Message}");
             }
         }
+
+        public void BlockUnblockPassengerAsync(Guid Id)
+        {
+            try
+            {
+                var passenger = _applicationContext.Passengers.Find(Id);
+
+                if (passenger == null)
+                {
+                    throw new Exception($"Passenger Couldn't be null {nameof(BlockUnblockPassengerAsync)}");
+                }
+
+                passenger.IsBlocked = !passenger.IsBlocked;
+                _applicationContext.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve passenger: {ex.Message}");
+            }
+        }
     }
 }

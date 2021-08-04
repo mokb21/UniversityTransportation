@@ -176,6 +176,15 @@ namespace UniversityTransportation.API.Controllers
 
             if (user != null)
             {
+
+                //Is passenger blocked
+                if (user.Role == (byte)UserRoles.Passenger)
+                {
+                    var passenger = _passengerService.GetPassenger(user.PassengerId.Value);
+                    if (passenger != null && passenger.IsBlocked)
+                        return BadRequest("Passenger account is blocked");
+                }
+
                 var result = await _signInManager.CheckPasswordSignInAsync(user, model.Password, false);
 
                 if (result.Succeeded)

@@ -11,5 +11,7 @@ namespace UniversityTransportation.Interfaces.Repository
     public interface IPassengerRepository : IRepository<Passenger>
     {
         Task<int> VoteRoomAsync(VoteRoomModel voteRoom);
+
+        void BlockUnblockPassengerAsync(Guid Id);
     }
 }

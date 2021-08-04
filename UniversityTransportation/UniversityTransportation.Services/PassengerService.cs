@@ -88,7 +88,27 @@ namespace UniversityTransportation.Services
 
         public async Task<int> VoteRoomAsync(VoteRoomModel voteRoom)
         {
-            return await _passengerRepository.VoteRoomAsync(voteRoom);
+            try
+            {
+                return await _passengerRepository.VoteRoomAsync(voteRoom);
+            }
+            catch (Exception ex)
+            {
+
+                throw new Exception($"could not vote room: {ex.Message}");
+            }
+        }
+
+        public void BlockUnblockPassengerAsync(Guid Id)
+        {
+            try
+            {
+                _passengerRepository.BlockUnblockPassengerAsync(Id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"could not block/unblock passenger: {ex.Message}");
+            }
         }
     }
 }

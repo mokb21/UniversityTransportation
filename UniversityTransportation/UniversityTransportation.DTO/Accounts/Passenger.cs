@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UniversityTransportation.DTO.Accounts
 {
-   public class Passenger
+    public class Passenger
     {
         [Required]
         public Guid Id { get; set; }
@@ -35,5 +35,6 @@ namespace UniversityTransportation.DTO.Accounts
         [Required]
         public string UniversityId { get; set; }
 
+        public bool IsBlocked { get; set; }
     }
 }
