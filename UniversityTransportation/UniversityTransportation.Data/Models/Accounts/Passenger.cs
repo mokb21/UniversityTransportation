@@ -21,6 +21,8 @@ namespace UniversityTransportation.Data.Models.Accounts
         [Required]
         public Guid QRCode { get; set; }
 
+        public bool IsBlocked { get; set; }
+
         public virtual ApplicationUser ApplicationUser { get; set; }
 
         public virtual ICollection<PassengerJourneyStation> PassengerJourneyStations { get; set; }
