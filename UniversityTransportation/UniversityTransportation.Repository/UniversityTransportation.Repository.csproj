@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\UniversityTransportation.Interfaces\UniversityTransportation.Interfaces.csproj" />
+    <ProjectReference Include="..\UniversityTransportation.Models\UniversityTransportation.Models.csproj" />
   </ItemGroup>
 
 </Project>

@@ -40,8 +40,6 @@ namespace UniversityTransportation.API
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
-
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Constants.ConfigurationConstants.ConnectionString));
 
             services.AddSignalR();
@@ -106,6 +104,9 @@ namespace UniversityTransportation.API
             services.AddControllers().AddNewtonsoftJson(options =>
                 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
+            //THIS ONLY FOR THE RAZOR PAGE DASHBOARD
+            services.AddRazorPages();
+
             services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<IStationRepository, StationRepository>();
             services.AddTransient<IDriverRepository, DriverRepository>();
@@ -124,6 +125,7 @@ namespace UniversityTransportation.API
             services.AddTransient<IRequestTripService, RequestTripService>();
             services.AddTransient<ITripService, TripService>();
             services.AddTransient<IPassengerJourneyStationService, PassengerJourneyStationService>();
+            services.AddTransient<IDashboardService, DashboardService>();
 
             services.AddSwaggerGen(options =>
             {
@@ -160,6 +162,10 @@ namespace UniversityTransportation.API
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                
+                //THIS ONLY FOR THE RAZOR PAGE DASHBOARD
+                endpoints.MapRazorPages();
+
                 endpoints.MapHub<TrackingHub>("/trackingHub");
                 endpoints.MapHub<NotificationsHub>("/notificationsHub");
             });

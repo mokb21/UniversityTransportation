@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityTransportation.Re
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityTransportation.Services", "UniversityTransportation.Services\UniversityTransportation.Services.csproj", "{DC704735-2E21-45DD-B36E-265CF67DCC20}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityTransportation.Constants", "UniversityTransportation.Constants\UniversityTransportation.Constants.csproj", "{5ACA80B1-E187-4F13-B94A-16D3B1F860AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UniversityTransportation.Constants", "UniversityTransportation.Constants\UniversityTransportation.Constants.csproj", "{5ACA80B1-E187-4F13-B94A-16D3B1F860AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
