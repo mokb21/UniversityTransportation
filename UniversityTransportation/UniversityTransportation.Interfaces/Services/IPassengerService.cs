@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UniversityTransportation.Data.Models;
 using UniversityTransportation.DTO.Accounts;
+using UniversityTransportation.Models;
 
 namespace UniversityTransportation.Interfaces.Services
 {
@@ -17,5 +18,7 @@ namespace UniversityTransportation.Interfaces.Services
         Passenger GetPassenger(Guid Id);
 
         void DeletePassenger(Guid Id);
+
+        Task<int> VoteRoomAsync(VoteRoomModel voteRoom);
     }
 }

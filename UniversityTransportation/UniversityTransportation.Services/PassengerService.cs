@@ -8,6 +8,7 @@ using UniversityTransportation.Data.Models;
 using UniversityTransportation.DTO.Accounts;
 using UniversityTransportation.Interfaces.Repository;
 using UniversityTransportation.Interfaces.Services;
+using UniversityTransportation.Models;
 using UniversityTransportation.Services.AutoMapper;
 
 namespace UniversityTransportation.Services
@@ -83,6 +84,11 @@ namespace UniversityTransportation.Services
             {
                 throw new Exception($"Couldn't retrieve entity: {ex.Message}");
             }
+        }
+
+        public async Task<int> VoteRoomAsync(VoteRoomModel voteRoom)
+        {
+            return await _passengerRepository.VoteRoomAsync(voteRoom);
         }
     }
 }

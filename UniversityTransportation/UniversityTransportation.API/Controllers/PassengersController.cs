@@ -9,6 +9,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using UniversityTransportation.Interfaces.Services;
+using UniversityTransportation.Models;
 
 namespace UniversityTransportation.API.Controllers
 {
@@ -33,8 +34,6 @@ namespace UniversityTransportation.API.Controllers
         {
             try
             {
-                //return BadRequest("Client Error Your Angular Code is Fucked up!! Fuck you grandfather Ardogan");
-                
                 if (Id.HasValue)
                     return Ok(_passengerService.GetPassenger(Id.Value));
                 else
@@ -45,6 +44,21 @@ namespace UniversityTransportation.API.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> VoteRoom(VoteRoomModel voteRoom)
+        {
+            try
+            {
+                return Ok(await _passengerService.VoteRoomAsync(voteRoom));
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+        }
+
         [HttpDelete]
         public IActionResult Delete(Guid Id)
         {

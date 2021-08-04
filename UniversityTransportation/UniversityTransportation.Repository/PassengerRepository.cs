@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using UniversityTransportation.Data;
 using UniversityTransportation.Data.Models.Accounts;
 using UniversityTransportation.Interfaces.Repository;
+using UniversityTransportation.Models;
 
 namespace UniversityTransportation.Repository
 {
@@ -88,6 +89,38 @@ namespace UniversityTransportation.Repository
             catch (Exception ex)
             {
                 throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
+
+        public async Task<int> VoteRoomAsync(VoteRoomModel voteRoom)
+        {
+            try
+            {
+                var passenger = _applicationContext.Passengers
+                    .Include(e => e.Rooms)
+                    .FirstOrDefault(e => e.Id == voteRoom.PassengerId);
+                if (passenger == null)
+                {
+                    throw new ArgumentNullException($"{nameof(VoteRoomAsync)} passenger must not be null");
+                }
+
+                var room = _applicationContext.Rooms.Find(voteRoom.RoomId);
+                if (room == null)
+                {
+                    throw new ArgumentNullException($"{nameof(VoteRoomAsync)} room must not be null");
+                }
+
+                passenger.Rooms.Clear();
+                passenger.Rooms.Add(room);
+                await _applicationContext.SaveChangesAsync();
+
+                return _applicationContext.Rooms
+                    .Include(e => e.Passengers)
+                    .FirstOrDefault(e => e.Id == voteRoom.RoomId).Passengers.Count;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't vote room: {ex.Message}");
             }
         }
     }
