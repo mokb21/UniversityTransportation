@@ -12,31 +12,98 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
-                <canvas class="" id="roomChart"></canvas>
-
+            <div class="col-md-6 text-center">
+                <h2>Journeys</h2>
+                <canvas class="" id="journeysChart"></canvas>
             </div>
-            <div class="col-md-6"></div>
+            <div class="col-md-6 text-center">
+                <h2>Stations</h2>
+                <canvas class="" id="stationsChart"></canvas>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <h2>Rooms</h2>
+                <canvas class="" id="roomChart"></canvas>
+            </div>
+            <div class="col-md-6 text-center">
+                <h2>Requsted Journeys</h2>
+                <canvas class="" id="journeysRequstedChart"></canvas>
+            </div>
         </div>
     </div>
 
     <script>
-            let config = {
-                type: 'bar',
-                data: @Html.Raw(Json.Serialize(Model.roomsBarChart)),
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
+        let journeysConfig = {
+            type: 'line',
+            data: @Html.Raw(Json.Serialize(Model.journeysBarChart)),
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    }
+                }
+            },
+        };
+
+        var journeysChart = new Chart(
+            document.getElementById('journeysChart'),
+            journeysConfig
+        );
+
+        let stationsConfig = {
+            type: 'bar',
+            data: @Html.Raw(Json.Serialize(Model.stationsBarChart)),
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    }
+                }
+            },
+        };
+
+        var stationsChart = new Chart(
+            document.getElementById('stationsChart'),
+            stationsConfig
+        );
+
+        let roomsConfig = {
+            type: 'bar',
+            data: @Html.Raw(Json.Serialize(Model.roomsBarChart)),
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
                     }
                 },
-            };
+                indexAxis: 'y',
+            },
+        };
 
-            var roomChart = new Chart(
-                document.getElementById('roomChart'),
-                config
-            );
+        var roomChart = new Chart(
+            document.getElementById('roomChart'),
+            roomsConfig
+        );
+
+
+        let journeysRequstedConfig = {
+            type: 'line',
+            data: @Html.Raw(Json.Serialize(Model.journeysRequestedBarChart)),
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                    }
+                },
+            },
+        };
+
+        var journeysRequstedChart = new Chart(
+            document.getElementById('journeysRequstedChart'),
+            journeysRequstedConfig
+        );
+
     </script>
 </body>
 

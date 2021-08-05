@@ -87,5 +87,29 @@ namespace UniversityTransportation.Repository
                 throw new Exception($"Couldn't retrieve entities: {ex.Message}");
             }
         }
+
+        public IQueryable<Journey> GetJourneysWithPassengers()
+        {
+            try
+            {
+                return _applicationContext.Journeys.Include(e => e.PassengerJourneyStations);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
+
+        public IQueryable<Journey> GetJourneysWithRequestedTrip()
+        {
+            try
+            {
+                return _applicationContext.Journeys.Include(e => e.RequestTrips);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Couldn't retrieve entities: {ex.Message}");
+            }
+        }
     }
 }

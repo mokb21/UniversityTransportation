@@ -10,5 +10,7 @@ namespace UniversityTransportation.Interfaces.Repository
     public interface IStationRepository : IRepository<Station>
     {
         IQueryable<JourneyStation> GetDetailedStationsByJourneyId(Guid JourneyId);
+
+        IQueryable<Station> GetStationsWithPassengers();
     }
 }
